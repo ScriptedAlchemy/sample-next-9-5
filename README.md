@@ -2,6 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
  - `yarn`
- - `yarn dev`
- - attempt to load page on port 3000
- - will 500, then reload page again. 
+ - `yarn start`
+ - load the page on localhost:300
+ - edit `packages/sample/index.js` and press save
+ - note webpack "rebuilds" but no HMR update is shown
