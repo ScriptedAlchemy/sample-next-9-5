@@ -1,16 +1,15 @@
 {
-  "name": "sample-app",
-  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
-  "dependencies": {
-    "next": "9.5.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "sample-async-package": "https://github.com/ScriptedAlchemy/sample-async-package.git"
+  "resolutions": {
+    "webpack": "^5.0.0-beta.28",
+    "next": "9.5.2"
+  },
+  "scripts": {
+    "start": "yarn workspace @nextapp/site dev"
   }
 }
