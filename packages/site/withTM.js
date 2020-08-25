@@ -81,8 +81,8 @@ const withTmInitializer = (transpileModules = [], options = {}) => {
                         if (typeof external !== 'function') return external;
 
                         return isWebpack5
-                            ? ({ context, request }, cb) => {
-                                return hasInclude(context, request) ? cb() : external({ context, request }, cb);
+                            ? ({context, request}, cb) => {
+                                return hasInclude(context, request) ? cb() : external({context, request}, cb);
                             }
                             : (ctx, req, cb) => {
                                 return hasInclude(ctx, req) ? cb() : external(ctx, req, cb);
@@ -167,9 +167,26 @@ const withTmInitializer = (transpileModules = [], options = {}) => {
                     }
                 }
 
+                // THIS ALSO WORKS, BUT SLOWER
                 // if (isWebpack5) {
                 //   config.cache = false;
                 // }
+
+                //THIS WORK
+                // const managed = transpileModules.reduce((acc, mod) => {
+                //     try {
+                //         // tests dont have valid package.json field to resolve modules
+                //         acc.push(path.dirname(require.resolve(mod)));
+                //     } catch (e) {
+                //         console.warn('Unable to resolve module', mod);
+                //     }
+                //     return acc;
+                // }, []);
+                //
+                // config.cache = {
+                //     type: 'memory',
+                //     managedPaths: managed
+                // };
 
                 // Overload the Webpack config if it was already overloaded
                 if (typeof nextConfig.webpack === 'function') {
